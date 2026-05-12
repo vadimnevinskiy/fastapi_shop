@@ -12,7 +12,7 @@ class ProductRepository:
     def get_all(self) -> List[Product]:
         return list(self.db.scalars(select(Product).options(joinedload(Product.category))).all())
 
-    def get_product_by_id(self, product_id: int) -> Product | None:
+    def get_by_id(self, product_id: int) -> Product | None:
         return self.db.scalars(
             select(Product)
             .options(joinedload(Product.category))
