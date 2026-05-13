@@ -1,14 +1,10 @@
 from typing import TYPE_CHECKING
 from sqlalchemy import Integer, String, Column
-from sqlalchemy.orm import Mapped, mapped_column, relationship, DeclarativeBase
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from ..database import Base
 
 if TYPE_CHECKING:
     from .product import Product
-
-
-class Base(DeclarativeBase):
-    pass
 
 
 class Category(Base):

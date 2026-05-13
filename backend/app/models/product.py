@@ -1,15 +1,12 @@
 from typing import TYPE_CHECKING
-from sqlalchemy.orm import Mapped, mapped_column, relationship, DeclarativeBase
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey
 from datetime import datetime
 from ..database import Base
 
-if TYPE_CHECKING:
-    from .category import Category
+# # if TYPE_CHECKING:
+# #     from .category import Category
 
-
-class Base(DeclarativeBase):
-    pass
 
 
 class Product(Base):
@@ -22,7 +19,9 @@ class Product(Base):
     category_id: Mapped[int] = mapped_column(Integer, ForeignKey("categories.id"), nullable=False)
     image_url: Mapped[str] = mapped_column(String)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
-    category: Mapped["Category"] = relationship("Category", back_populates="products")
+
+    # category: Mapped["Category"] = relationship("Category", back_populates="products")
+    category = relationship("Category", back_populates="products")
 
     # id = Column(Integer, primary_key=True, index=True)
     # name = Column(String, nullable=False, index=True)
